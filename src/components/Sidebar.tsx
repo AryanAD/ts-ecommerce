@@ -9,7 +9,7 @@ interface FetchResponse {
 
 const Sidebar = () => {
   const [categories, setCategories] = useState<string[]>([]);
-  const [keywords, setKeywords] = useState<string[]>([
+  const [keywords] = useState<string[]>([
     "fashion",
     "trend",
     "beauty",
