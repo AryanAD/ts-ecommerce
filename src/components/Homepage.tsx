@@ -10,7 +10,7 @@ const Homepage = () => {
   const [products, setProducts] = useState<any[]>([]);
   const [filter, setFilter] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(true);
 
   const itemsPerPage = 12;
 
@@ -20,14 +20,13 @@ const Homepage = () => {
     }`;
 
     if (keyword) {
-      url = `https://dummyjson.com/products?search?q=${keyword}`;
+      url = `https://dummyjson.com/products/search?q=${keyword}`;
     }
 
     axios
       .get(url)
       .then((res) => {
         setProducts(res.data.products);
-        console.log(res.data.products, "products");
       })
       .catch((err) => {
         console.log("Error Fetching products", err);
@@ -39,14 +38,42 @@ const Homepage = () => {
 
     if (selectedCategory) {
       filteredProducts = filteredProducts.filter(
-        (product) => product.category === selectedCategory
+        (product) => product?.category === selectedCategory
       );
+    }
 
-      console.log(filteredProducts, "filtered by category");
+    if (minPrice !== undefined) {
+      filteredProducts = filteredProducts.filter(
+        (product) => product.price >= minPrice
+      );
+    }
+
+    if (maxPrice !== undefined) {
+      filteredProducts = filteredProducts.filter(
+        (product) => product.price <= maxPrice
+      );
+    }
+
+    if (searchQuery) {
+      filteredProducts = filteredProducts.filter((product) =>
+        product.title.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+
+    switch (filter) {
+      case "expensive":
+        return filteredProducts.sort((a, b) => b.price - a.price);
+      case "cheap":
+        return filteredProducts.sort((a, b) => a.price - b.price);
+      case "popular":
+        return filteredProducts.sort((a, b) => b.rating - a.rating);
+      default:
+        return filteredProducts;
     }
   };
 
-  getFilteredProducts();
+  const filteredProducts = getFilteredProducts();
+  console.log(filteredProducts, "products");
 
   return (
     <section className="xl:w-[55rem] lg:w-[55rem] sm:w-[40rem] xs:w-[20rem] p-5">
