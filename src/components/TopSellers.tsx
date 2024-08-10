@@ -38,7 +38,7 @@ const TopSellers = () => {
   };
 
   return (
-    <div className="bg-white p-5 mx-5 mt-[5rem] border w-[23rem] rounded">
+    <div className="bg-white p-5 mx-5 mt-[5rem] border w    -[23rem] rounded">
       <h1 className="mb-5 text-xl font-bold">Top Sellers</h1>
       <ul>
         {authors.map((author, index) => (
@@ -57,8 +57,8 @@ const TopSellers = () => {
               onClick={() => handleFollowClick(index)}
               className={`py-1 px-3 rounded ${
                 author.isFollowing
-                  ? "bg-red-500 text-white"
-                  : "bg-black-500 text-white"
+                  ? "bg-gray-200 text-black"
+                  : "bg-black text-white"
               }`}
             >
               {author.isFollowing ? "Unfollow" : "Follow"}

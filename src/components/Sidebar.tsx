@@ -78,8 +78,8 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="w-64 p-5 h-screen">
-      <h1 className="text-2xl font-bold mb-10 mt-4">YoPasal</h1>
+    <div className="w-1/5 h-screen p-5 mt-3">
+      <h1 className="mt-4 mb-10 text-2xl font-bold">YoPasal</h1>
 
       <section>
         <input
@@ -87,30 +87,32 @@ const Sidebar = () => {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="Search Products"
-          className="border-2 rounded-lg px-2 w-full sm:mb-0"
+          className="w-full px-2 py-3 border-2 rounded-lg sm:mb-0"
         />
 
-        <div className="flex justify-center items-center">
+        <div className="flex items-center justify-center mt-3">
           <input
             type="text"
             placeholder="Min"
             value={minPrice ?? ""}
-            className="border-2 mr-2 px-5 py-3 mb-3 w-full"
+            className="w-full px-5 py-3 mb-3 mr-2 border-2"
             onChange={handleMinPriceChange}
           />
           <input
             type="text"
             placeholder="Max"
             value={maxPrice ?? ""}
-            className="border-2 mr-2 px-5 py-3 mb-3 w-full"
+            className="w-full px-5 py-3 mb-3 mr-2 border-2"
             onChange={handleMaxPriceChange}
           />
         </div>
 
         {/* Filter by category */}
         <section>
-          <div className="mb-3">
-            <h2 className="text-xl font-semibold mb-3">Filter By Categories</h2>
+          <div className="w-full mb-3">
+            <h2 className="mb-3 text-xl font-semibold ">
+              Filter By Categories
+            </h2>
           </div>
           {categories.map((category, index) => (
             <label key={index} className="block mb-2">
@@ -129,14 +131,14 @@ const Sidebar = () => {
 
         {/* Filter by keywords */}
         <section>
-          <div className="mb-3 mt-5">
-            <h2 className="text-xl font-semibold mb-3">Filter By Keywords</h2>
+          <div className="mt-5 mb-3">
+            <h2 className="mb-3 text-xl font-semibold">Filter By Keywords</h2>
           </div>
           {keywords.map((keyword, index) => (
             <button
               key={index}
               onClick={() => handleKeywordClick(keyword)}
-              className="block mb-2 px-4 py-2 w-full text-left border rounded-lg hover:bg-gray-100"
+              className="block w-full px-4 py-2 mb-2 text-left border rounded-lg hover:bg-gray-100"
             >
               {keyword.toUpperCase()}
             </button>
