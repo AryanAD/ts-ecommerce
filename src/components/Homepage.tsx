@@ -11,7 +11,7 @@ const Homepage = () => {
   const [products, setProducts] = useState<any[]>([]);
   const [filter, setFilter] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
-  const [dropdownOpen, setDropdownOpen] = useState(true);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const itemsPerPage = 12;
 
@@ -104,11 +104,11 @@ const Homepage = () => {
   return (
     <section className="xl:w-[55rem] lg:w-[55rem] sm:w-[40rem] xs:w-[20rem] p-5">
       <div className="mb-5">
-        <div className="flex flex-col sm:flex-row justify-between items-center">
-          <div className="relative mb-5 mt-5">
+        <div className="flex flex-col items-center justify-between sm:flex-row">
+          <div className="relative mt-5 mb-5">
             <button
               onClick={() => setDropdownOpen(!dropdownOpen)}
-              className="border px-4 py-2 rounded-full flex items-center"
+              className="flex items-center px-4 py-2 border rounded-full"
             >
               <Tally3 className="mr-2" />
 
@@ -118,22 +118,22 @@ const Homepage = () => {
             </button>
 
             {dropdownOpen && (
-              <div className="absolute bg-white border border-gray-200 rounded mt-2 w-full sm:w-40">
+              <div className="absolute w-full mt-2 bg-white border border-gray-200 rounded sm:w-40">
                 <button
                   onClick={() => setFilter("cheap")}
-                  className="block px-4 py-2 w-full text-left hover:bg-gray-200"
+                  className="block w-full px-4 py-2 text-left hover:bg-gray-200"
                 >
                   By Lowest
                 </button>
                 <button
                   onClick={() => setFilter("expensive")}
-                  className="block px-4 py-2 w-full text-left hover:bg-gray-200"
+                  className="block w-full px-4 py-2 text-left hover:bg-gray-200"
                 >
                   By Highest
                 </button>
                 <button
                   onClick={() => setFilter("popular")}
-                  className="block px-4 py-2 w-full text-left hover:bg-gray-200"
+                  className="block w-full px-4 py-2 text-left hover:bg-gray-200"
                 >
                   By Popular
                 </button>
@@ -141,7 +141,7 @@ const Homepage = () => {
             )}
           </div>
         </div>
-        <div className="grid grid-cols-4 sm:grid-cols-3 md:grid-cols-4 gap-5">
+        <div className="grid grid-cols-4 gap-5 sm:grid-cols-3 md:grid-cols-4">
           {/* Book Card */}
           {filteredProducts.map((product) => (
             <BookCard
@@ -154,11 +154,11 @@ const Homepage = () => {
           ))}
         </div>
 
-        <div className="flex flex-col sm:flex-row justify-between items-center mt-5">
+        <div className="flex flex-col items-center justify-between mt-5 sm:flex-row">
           <button
             onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}
-            className="border px-4 py-2 mx-2 rounded-full"
+            className="px-4 py-2 mx-2 border rounded-full"
           >
             Previous
           </button>
@@ -180,7 +180,7 @@ const Homepage = () => {
           <button
             onClick={() => handlePageChange(currentPage + 1)}
             disabled={currentPage === totalPages}
-            className="border px-4 py-2 mx-2 rounded-full"
+            className="px-4 py-2 mx-2 border rounded-full"
           >
             Next
           </button>
